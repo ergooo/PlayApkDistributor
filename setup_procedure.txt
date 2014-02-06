@@ -6,3 +6,4 @@ scalaVersion = 2.10.2
 
 IDE = eclipse
 
+PostgreSQL 9.3.2
