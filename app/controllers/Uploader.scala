@@ -14,7 +14,7 @@ object Uploader extends Controller {
       import java.io.File
       val filename = file.filename
       val contentType = file.contentType
-      file.ref.moveTo(new File("/tmp", filename))
+      file.ref.moveTo(new File("resources/apks/", filename))
       //Ok("File uploaded")
       Ok(Json.toJson(Map("staus" -> "OK", "message" -> ("completed!")))).as("application/json")
     }.getOrElse {
