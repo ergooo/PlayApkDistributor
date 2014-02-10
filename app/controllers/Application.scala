@@ -9,6 +9,7 @@ import play.api.Play.current
 import play.api.mvc._
 import models.database.Db
 import models.database.Apk
+import models.database.ApkDao
 
 object Application extends Controller {
 
@@ -20,7 +21,7 @@ object Application extends Controller {
   def index = Action { request =>
     
     transaction{
-      Db.apk.insert(new Apk("apkName","apkUrl","iconUrl","packageName"))
+      ApkDao.insert(new Apk("apkName","apkUrl","iconUrl","packageName"))
     }
     
   	Ok("Got request [" + request + "]")
