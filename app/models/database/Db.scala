@@ -10,7 +10,7 @@ import org.squeryl.Schema
  * http://stackoverflow.com/questions/12794427/squeryl-and-postgresqls-autoincrement
  */
 object Db extends Schema{
-  val apk = table[ApkTable]("apk")
+  val apk = table[Apk]("apk")
   
   on(apk)(a => declare(
     a.id is(primaryKey, autoIncremented("apk_id_seq"))

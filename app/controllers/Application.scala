@@ -1,17 +1,14 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
-import org.squeryl.{ SessionFactory, Session }
-import org.squeryl.adapters.PostgreSqlAdapter
-import play.api.db.DB
-import play.api.Play.current
-import javax.sql.DataSource
-import org.squeryl.adapters.H2Adapter
-import org.squeryl.internals.DatabaseAdapter
-import models.database.ApkTable
 import org.squeryl.PrimitiveTypeMode._
+import org.squeryl.adapters.H2Adapter
+import org.squeryl.adapters.PostgreSqlAdapter
+import org.squeryl.internals.DatabaseAdapter
+import play.api._
+import play.api.Play.current
+import play.api.mvc._
 import models.database.Db
+import models.database.Apk
 
 object Application extends Controller {
 
@@ -23,7 +20,7 @@ object Application extends Controller {
   def index = Action { request =>
     
     transaction{
-      Db.apk.insert(new ApkTable("apkName","apkUrl","iconUrl","packageName"))
+      Db.apk.insert(new Apk("apkName","apkUrl","iconUrl","packageName"))
     }
     
   	Ok("Got request [" + request + "]")

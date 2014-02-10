@@ -1,9 +1,9 @@
 package models.database
 
-import org.squeryl.annotations.Column
 import org.squeryl.KeyedEntity
+import org.squeryl.annotations.Column
 
-class ApkTable(
+class Apk(
   val name: String,
   @Column("apk_url") val apkUrl: String,
   @Column("icon_url") val iconUrl: String,
