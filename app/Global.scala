@@ -1,9 +1,8 @@
-package controllers
+
 
 import org.squeryl.Session
 import org.squeryl.SessionFactory
 import org.squeryl.adapters.PostgreSqlAdapter
-
 import play.api.Application
 import play.api.GlobalSettings
 import play.api.db.DB
