@@ -12,7 +12,6 @@ import org.squeryl.internals.DatabaseAdapter
 import models.database.ApkTable
 import org.squeryl.PrimitiveTypeMode._
 import models.database.Db
-ase.Db
 
 object Application extends Controller {
 

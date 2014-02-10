@@ -1,9 +1,7 @@
 package models.database
 
+import org.squeryl.PrimitiveTypeMode.long2ScalarLong
 import org.squeryl.Schema
-import org.squeryl.PrimitiveTypeMode._
-import database.ApkTable
-import models.database.ApkTable
 
 /**
  * saw at 
