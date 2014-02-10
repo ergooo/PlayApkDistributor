@@ -9,9 +9,10 @@ import play.api.Play.current
 import javax.sql.DataSource
 import org.squeryl.adapters.H2Adapter
 import org.squeryl.internals.DatabaseAdapter
-import database.ApkTable
+import models.database.ApkTable
 import org.squeryl.PrimitiveTypeMode._
-import database.Db
+import models.database.Db
+ase.Db
 
 object Application extends Controller {
 

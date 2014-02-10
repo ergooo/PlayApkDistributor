@@ -1,4 +1,4 @@
-package database
+package models.database
 
 import org.squeryl.annotations.Column
 import org.squeryl.KeyedEntity
