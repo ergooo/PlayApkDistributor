@@ -13,17 +13,16 @@ import models.database.ApkDao
 
 object Application extends Controller {
 
-//  def index = Action {
-//    Ok(views.html.index("Your new application is ready."))
-//  }
+	//  def index = Action {
+	//    Ok(views.html.index("Your new application is ready."))
+	//  }
 
+	def index = Action { request ⇒
 
-  def index = Action { request =>
-    
-    transaction{
-      ApkDao.insert(new Apk("apkName","apkUrl","iconUrl","packageName"))
-    }
-    
-  	Ok("Got request [" + request + "]")
-  }
+		transaction {
+			ApkDao.insert(new Apk("apkName", "apkUrl", "iconUrl", "packageName"))
+		}
+
+		Ok("Got request [" + request + "]")
+	}
 }
