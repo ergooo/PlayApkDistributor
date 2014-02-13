@@ -16,6 +16,7 @@ class ApkDecoderTest extends AssertionsForJUnit{
 		val apkFile = new File("./test/resources/ApkDistributor.apk")
 		val packageName = ApkDecoder.getPackageName(apkFile);
 
-		assert(packageName == "jp.ergo.android.apkdistributor")
+		val actual = "jp.ergo.android.apkdistributor"
+		assert(packageName == actual)
 	}
 }
