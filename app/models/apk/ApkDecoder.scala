@@ -1,15 +1,15 @@
 package models.apk
 
 import java.io.File
-
 import scala.Array.canBuildFrom
 import scala.sys.process.Process
+import models.database.Apk
 
 object ApkDecoder {
 	val KEY_OF_PACKAGE_NAME = "name="
 
 	def decode(file: File) = {
-		ApkInfo("", "", 0, "");
+		new Apk("TestApp", "testapp.apk", "icon.png", "jp.ergo.android.test", 1, "1,0.0")
 	}
 
 	def getPackageName(apkFile: File): String = {

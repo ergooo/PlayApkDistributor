@@ -20,7 +20,7 @@ object Application extends Controller {
 	def index = Action { request ⇒
 
 		transaction {
-			ApkDao.insert(new Apk("apkName", "apkUrl", "iconUrl", "packageName"))
+			ApkDao.insert(new Apk("TestApp", "testapp.apk", "icon.png", "jp.ergo.android.test", 1, "1,0.0"))
 		}
 
 		Ok("Got request [" + request + "]")
