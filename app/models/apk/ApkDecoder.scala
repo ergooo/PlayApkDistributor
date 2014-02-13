@@ -1,8 +1,9 @@
-package models.database.apk
+package models.apk
 
 import java.io.File
 
-import scala.sys.process._
+import scala.Array.canBuildFrom
+import scala.sys.process.Process
 
 object ApkDecoder {
 	val KEY_OF_PACKAGE_NAME = "name="

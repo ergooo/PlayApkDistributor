@@ -1,11 +1,7 @@
-package models.database.apk
+package models.apk
 
 import java.io.File
 
-import scala.collection.mutable.ListBuffer
-
-import org.junit.Assert._
-import org.junit.Before
 import org.junit.Test
 import org.scalatest.junit.AssertionsForJUnit
 
