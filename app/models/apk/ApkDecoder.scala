@@ -4,28 +4,48 @@ import java.io.File
 import scala.Array.canBuildFrom
 import scala.sys.process.Process
 import models.database.Apk
+import org.apache.commons.io.FileUtils
+import scala.xml.XML
+import scala.xml.Document
+import scala.xml.Elem
+import scala.xml.Node
+import scala.xml.NodeSeq
 
 object ApkDecoder {
-	val KEY_OF_PACKAGE_NAME = "name="
 
-	def decode(file: File) = {
-		new Apk("TestApp", "testapp.apk", "icon.png", "jp.ergo.android.test", 1, "1,0.0")
+	def decode(apkFile: File) = {
+		val manifest = extractAndroidManifest(apkFile)
+		val s = FileUtils.readFileToString(manifest).replaceAll("android:", "")
+		val doc = XML.loadString(s)
+
+		val apkName = apkFile.getName();
+		val appName = getAppName(doc)
+		val versionCode = getVersionCode(doc)
+		val versionName = getVersionName(doc)
+		val packageName = getPackageName(doc)
+		val iconName = getIconName(doc)
+
+		new Apk(appName, apkName, iconName, packageName, versionCode, versionName)
 	}
 
-	def getPackageName(apkFile: File): String = {
-		try{
-			// println(res) is like "Package Group 0 id=127 packageCount=1 name=jp.ergo.android.apkdistributor"
-			val res = (Process("./libs/aapt l -a " + apkFile.getAbsolutePath()) #| Process("grep package") #| Process("grep name=")).!!
+	def extractAndroidManifest(apkFile: File): File={
+		Process("./libs/apktool d -s -f " + apkFile.getAbsolutePath() + " ./temp").!
+		new File("./temp/AndroidManifest.xml")
+	}
 
-			// in case multiple lines be hit.
-			val elems = res.trim().split(" ")
-			val elemsStartsWithName = for(e <- elems; if e.startsWith(KEY_OF_PACKAGE_NAME)) yield e
-			// only need the first one.
-			if(!elemsStartsWithName.isEmpty) elemsStartsWithName(0).split(KEY_OF_PACKAGE_NAME)(1)
-			else "" // TODO throw a certain exception
-		}catch{
-			// TODO throw a certain exception
-			case _ : Throwable => ""
-		}
+	private def getAppName(doc: NodeSeq) : String = {
+		(doc \\ "application" \ "@label").toString()
+	}
+	private def getVersionCode(doc: NodeSeq) : Int = {
+		(doc \\ "manifest" \ "@versionCode").toString().toInt
+	}
+	private def getVersionName(doc: NodeSeq): String = {
+		(doc \\ "manifest" \ "@versionName").toString()
+	}
+	private def getPackageName(doc: NodeSeq): String = {
+		(doc \\ "manifest" \ "@package").toString()
+	}
+	private def getIconName(doc: NodeSeq): String = {
+		(doc \\ "application" \ "@icon").toString()
 	}
 }
